@@ -1,0 +1,24 @@
+{
+  "name": "@fireguard/crypto-utils",
+  "version": "1.0.0",
+  "description": "Command line crypto utils",
+  "main": "src/index.js",
+  "bin": {
+    "crypto": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crypto",
+    "utils",
+    "command",
+    "line"
+  ],
+  "author": "Ronaldo Meneguite <ronaldo@fireguard.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "commander": "^6.0.0"
+  }
+}

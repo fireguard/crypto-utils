@@ -1,4 +1,4 @@
-# Fireguard Crypto Utils
+# Fireguard command line crypto utils
 
 # Install
 

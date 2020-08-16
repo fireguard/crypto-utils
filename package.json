@@ -7,14 +7,18 @@
     "crypto": "./src/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "crypto",
     "utils",
     "command",
-    "line"
+    "password",
+    "tokens"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/fireguard/crypto-utils"
+  },
   "author": "Ronaldo Meneguite <ronaldo@fireguard.com.br>",
   "license": "MIT",
   "dependencies": {

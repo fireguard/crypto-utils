@@ -2,7 +2,7 @@ const { Command } = require('commander');
 const { genPassword, genSalt, genHash } = require('./password');
 
 const program = new Command();
-program.version('0.0.1', '-v, --version', 'output the current version');
+program.version('1.0.0', '-v, --version', 'output the current version');
 
 const defaultPasswordLength = 16;
 

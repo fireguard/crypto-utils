@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 const { Command } = require('commander');
 const { genPassword, genSalt, genHash } = require('./password');
+const { genToken, isValidToken } = require('./token');
 
 const program = new Command();
 program.version('1.0.1', '-v, --version', 'output the current version');
@@ -31,6 +32,26 @@ program.command('pass [length]')
         console.info('---------------------------');
       }
     }
+  });
+
+program.command('token [args]')
+  .option('-t, --token <token>', 'Validate deterministic token')
+  .option('-a, --algorithm <algorithm>', 'Set algorithm used for gen token (Default: sha-256)', 'sha256')
+  .action((firstParam, cmd, othersParams = []) => {
+    if (!firstParam) {
+      throw new Error('Invalid required param');
+    }
+    const args = [firstParam, ...othersParams];
+    if (cmd.token) {
+      const algorithm = cmd.algorithm || 'sha256';
+      const result = isValidToken(cmd.token, args, algorithm);
+      console.info(`Result: ${ result ? 'VALID' : 'INVALID' }`);
+      return;
+    }
+
+    const algorithm = cmd.algorithm || 'sha256';
+    const token = genToken(args, algorithm);
+    console.info(`Token: ${token}`);
   });
 
 

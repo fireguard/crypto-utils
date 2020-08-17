@@ -71,3 +71,52 @@ Salt: $2b$12$vJJUC87sN4Plw5gR4InAeu
 Hash: $2b$12$vJJUC87sN4Plw5gR4InAeuOyRQEFFmwOyTkwstdLbuNRXFbZdvTs.
 ---------------------------
 ```
+
+# Generate deterministic token
+
+## Basic use
+``` bash
+crypto token 5f3a9c89db3c5f7c32bc6463
+
+# Result
+Token: NDY3M2RjM2E0NmJkOGUzYmU4YjU4NmIzODQ1N2FlMGRkMDk0OGEyODZjODA4MDk2OTIwZTY5ZmIzOTViYjU4ZQ==
+
+# Validate token
+crypto token -t NDY3M2RjM2E0NmJkOGUzYmU4YjU4NmIzODQ1N2FlMGRkMDk0OGEyODZjODA4MDk2OTIwZTY5ZmIzOTViYjU4ZQ== 5f3a9c89db3c5f7c32bc6463
+
+# Result
+Result: VALID
+```
+
+## Basic set multiples params
+``` bash
+crypto token 5f3a9c89db3c5f7c32bc6463 5dee6e906ef1a32011d7c34d EMAIL 2
+
+# Result
+Token: Mjg0YjAzM2JiNTg0MDA2Mzc0MTQ2MDVkNTZkZjM2NTBkM2I2MGE2NGEyMzMyMmRmMDQ5M2VlNjE2YWE2YWM2Yg==
+
+# Validate token
+crypto token -t Mjg0YjAzM2JiNTg0MDA2Mzc0MTQ2MDVkNTZkZjM2NTBkM2I2MGE2NGEyMzMyMmRmMDQ5M2VlNjE2YWE2YWM2Yg== 5f3a9c89db3c5f7c32bc6463 5dee6e906ef1a32011d7c34d EMAIL 2
+
+# Result
+Result: VALID
+```
+
+## Set hash Algorithm
+
+Avaliable algorithms: sha1, mdc2, ripemd160, sha224, sha256, sha384, sha512, md4, md5
+Default algorithm: sha256
+
+``` bash
+crypto token 5f3a9c89db3c5f7c32bc6463 -a sha1
+
+# Result
+Token: NDk2MWY2NTk5NjAxYzcxODA4NDQ5NDAyMmUzMjVmODlmN2NlNGFiNQ==
+```
+
+``` bash
+crypto token 5f3a9c89db3c5f7c32bc6463 -a sha512
+
+# Result
+ODEyMTJiNTg1ZjNkZDg2OGJmMGNlYmFjYTk0YTYwOTdmYTViZmYxYTM3MmUyYTAxMjA0YjBmMzU2NDI1M2ViODBiZTY1ZjA2OTQyMjc5ODAzOWViYTI4MmNjMzUwMGI4NDE3OGQ2YmZlMzRhOGVkYzQ0ZmY0OGM2MDAxMzgyZmU=
+```

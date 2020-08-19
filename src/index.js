@@ -12,7 +12,7 @@ const defaultSecretOtpBytes = 16;
 
 const parseInteger = (value, dummyPrevious) => {
   return parseInt(value, 10);
-} 
+};
 
 program.command('pass [length]')
   .option('-s, --salts [length]', 'Define number of salts  (Default: 10)', parseInteger, 10)
@@ -47,7 +47,7 @@ program.command('token [args]')
     if (cmd.token) {
       const algorithm = cmd.algorithm || 'sha256';
       const result = isValidToken(cmd.token, args, algorithm);
-      console.info(`Result: ${ result ? 'VALID' : 'INVALID' }`);
+      console.info(`Result: ${result ? 'VALID' : 'INVALID'}`);
       return;
     }
 
@@ -72,7 +72,7 @@ program.command('authenticator [secret]')
 
     if (cmd.check) {
       const result = checkAuthenticatorCode(secret, cmd.check, options);
-      console.info(`Result: ${ result ? 'VALID' : 'INVALID' }`);
+      console.info(`Result: ${result ? 'VALID' : 'INVALID'}`);
       return;
     }
 
@@ -92,13 +92,12 @@ program.command('totp <secret>')
 
     if (cmd.check) {
       const result = checkTOtpCode(secret, cmd.check, options);
-      console.info(`Result: ${ result ? 'VALID' : 'INVALID' }`);
+      console.info(`Result: ${result ? 'VALID' : 'INVALID'}`);
       return;
     }
 
     const code = genTOtpCode(secret, options);
     console.info(`Code: ${code}`);
   });
-
 
 program.parse(process.argv);

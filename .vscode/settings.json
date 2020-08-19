@@ -1,0 +1,19 @@
+{
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "files.trimTrailingWhitespace": true,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"eslint.enable": true,
+  "editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.trace.server": "off",
+	"eslint.debug": false,
+	"eslint.lintTask.enable": false,
+	"eslint.format.enable": true,
+  "editor.rulers": [120],
+  "workbench.colorCustomizations": {
+    "editorUnnecessaryCode.border": "#ff0000"
+  }
+}

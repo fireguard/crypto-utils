@@ -20,11 +20,11 @@ const genPassword = (length = 16, wishlist = defaultWishlist) => {
 
 const comparePassword = (passwordCandidate, passwordHash) => {
   return bcrypt.compareSync(passwordCandidate, passwordHash);
-}
+};
 
 module.exports = {
   genSalt,
   genHash,
   genPassword,
   comparePassword,
-}
+};

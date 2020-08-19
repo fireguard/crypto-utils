@@ -72,6 +72,82 @@ Hash: $2b$12$vJJUC87sN4Plw5gR4InAeuOyRQEFFmwOyTkwstdLbuNRXFbZdvTs.
 ---------------------------
 ```
 
+# Manager OTP flow
+
+## Autenticator ( Google Authenticator )
+
+### Generate secret
+``` bash
+crypto authenticator
+
+# Result
+Secret: BAHUYURJJA7F6EJ5IFME2QAQG4
+
+# Generate with 36 bytes for secret
+crypto authenticator -b 36
+
+# Result
+Secret: KISHKJQWIRESICYNCFCSOGBDFMDHIJJ7JMFQWDJJKY3HO6IKPYRSQ7KLDM
+```
+
+### Generate code for secret
+``` bash
+crypto authenticator BAHUYURJJA7F6EJ5IFME2QAQG4
+
+# Result
+Code: 207855
+
+# Generate code for 8 digits
+crypto authenticator BAHUYURJJA7F6EJ5IFME2QAQG4 -d 8
+
+# Result
+Code: 39771567
+```
+
+### Validate code for secret and code
+``` bash
+crypto authenticator BAHUYURJJA7F6EJ5IFME2QAQG4 -c 946523
+
+# Result
+Result: VALID
+
+# For invalid code
+crypto authenticator BAHUYURJJA7F6EJ5IFME2QAQG4 -c 0
+
+# Result
+Result: INVALID
+```
+
+## TOtp
+
+### Generate code for secret
+``` bash
+crypto totp BAHUYURJJA7F6EJ5IFME2QAQG4
+
+# Result
+Code: 034919
+
+# Generate code for 8 digits
+crypto totp BAHUYURJJA7F6EJ5IFME2QAQG4 -d 8
+
+# Result
+Code: 42915957
+```
+
+### Validate code for secret and code
+``` bash
+crypto totp BAHUYURJJA7F6EJ5IFME2QAQG4 -c 698844
+
+# Result
+Result: VALID
+
+# For invalid code
+crypto totp BAHUYURJJA7F6EJ5IFME2QAQG4 -c 0
+
+# Result
+Result: INVALID
+```
+
 # Generate deterministic token
 
 ## Basic use

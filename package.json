@@ -1,13 +1,12 @@
 {
   "name": "@fireguard/crypto-utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Command line crypto utils",
   "main": "src/index.js",
   "bin": {
     "crypto": "./src/index.js"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "crypto",
     "utils",
@@ -16,13 +15,14 @@
     "tokens"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/fireguard/crypto-utils"
+    "type": "git",
+    "url": "https://github.com/fireguard/crypto-utils"
   },
   "author": "Ronaldo Meneguite <ronaldo@fireguard.com.br>",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
-    "commander": "^6.0.0"
+    "commander": "^6.0.0",
+    "otplib": "^12.0.1"
   }
 }

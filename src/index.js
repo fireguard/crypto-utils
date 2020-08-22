@@ -10,18 +10,29 @@ program.version('1.0.1', '-v, --version', 'output the current version');
 const defaultPasswordLength = 16;
 const defaultSecretOtpBytes = 16;
 
-const parseInteger = (value, dummyPrevious) => {
+const parseInteger = (value, _) => {
   return parseInt(value, 10);
 };
 
-program.command('pass [length]')
-  .option('-s, --salts [length]', 'Define number of salts  (Default: 10)', parseInteger, 10)
-  .option('-n, --number [length]', 'Define number repeat operation  (Default: 1)', parseInteger, 1)
-  .option('-r, --recovery', 'Print hash for recovery password')
+program.command('pass [length] ')
+  .option('-n, --numbers <length>', 'Define min numbers character (Default: 1)', parseInteger, 1)
+  .option('-s, --symbols <length>', 'Define min symbols character (Default: 1)', parseInteger, 1)
+  .option('-l, --lowers <length>', 'Define min lowercase character (Default: 1)', parseInteger, 1)
+  .option('-u, --uppers <length>', 'Define min uppercase character (Default: 1)', parseInteger, 1)
+  .option('-r, --repeats <repeats>', 'Define number repeat operation (Default: 1)', parseInteger, 1)
+  .option('--salts [length]', 'Define number of salts (Default: 10)', parseInteger, 10)
+  .option('--recovery', 'Generate bcrypt salt and hash')
   .action((length = defaultPasswordLength, cmd = {}) => {
-    const repeats = cmd.number || 1;
+    const repeats = cmd.repeats || 1;
+    const criterias = {
+      n: cmd.numbers || 1,
+      s: cmd.symbols || 1,
+      u: cmd.uppers || 1,
+      l: cmd.lowers || 1,
+    };
+
     for (let i = 0; i < repeats; i++) {
-      const pass = genPassword(length);
+      const pass = genPassword(length, criterias);
       console.info(`Password ${i + 1}: ${pass}`);
 
       if (cmd.recovery) {

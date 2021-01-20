@@ -3,6 +3,7 @@ const { Command } = require('commander');
 const { genPassword, genSalt, genHash } = require('./password');
 const { genToken, isValidToken } = require('./token');
 const { checkTOtpCode, genTOtpCode, checkAuthenticatorCode, genAuthenticatorCode, genAuthenticatorSecret } = require('./otp');
+const { encrypt, decrypt, generateEncryptKey } = require('./encrypt');
 
 const program = new Command();
 program.version('1.0.1', '-v, --version', 'output the current version');
@@ -109,6 +110,34 @@ program.command('totp <secret>')
 
     const code = genTOtpCode(secret, options);
     console.info(`Code: ${code}`);
+  });
+
+program.command('encrypt <text>')
+  .option('-k, --key <key>', 'Use custom encrypt key')
+  .action((text, cmd) => {
+    if (!text) {
+      throw new Error('Invalid required param');
+    }
+
+    let key = cmd.key || '';
+    if (!key) {
+      key = generateEncryptKey();
+      console.info(`Key: ${key}`);
+    }
+
+    const code = encrypt(text, key);
+    console.info(`Encrypted: ${code}`);
+  });
+
+program.command('decrypt <encrypted>')
+  .option('-k, --key <key>', 'Use custom encrypt key')
+  .action((encrypted, cmd) => {
+    if (!encrypted || !cmd.key) {
+      throw new Error('Invalid required param');
+    }
+
+    const code = decrypt(encrypted, cmd.key);
+    console.info(`Decrypted: ${code}`);
   });
 
 program.parse(process.argv);

@@ -222,3 +222,35 @@ crypto token 5f3a9c89db3c5f7c32bc6463 -a sha512
 # Result
 ODEyMTJiNTg1ZjNkZDg2OGJmMGNlYmFjYTk0YTYwOTdmYTViZmYxYTM3MmUyYTAxMjA0YjBmMzU2NDI1M2ViODBiZTY1ZjA2OTQyMjc5ODAzOWViYTI4MmNjMzUwMGI4NDE3OGQ2YmZlMzRhOGVkYzQ0ZmY0OGM2MDAxMzgyZmU=
 ```
+
+
+# Encrypt string
+
+
+## Basic use
+``` bash
+crypto encrypt STRING_TO_ENCRYPT
+
+# Result
+Key: 8843d7f92416211de9ebb963ff4ce281
+Encrypted: 88o7ZDO4xWt/NtXohApy1avoG07hyw==
+```
+
+## Encrypt with pre-existing key
+``` bash
+crypto encrypt -k 8843d7f92416211de9ebb963ff4ce281 STRING_TO_ENCRYPT
+
+# Result
+Key: 8843d7f92416211de9ebb963ff4ce281
+Encrypted: uixkAR5r+cNiHTHJYWhqxd5L+ZCqsw==
+```
+
+# Decrypt string
+
+## Basic use
+``` bash
+crypto decrypt -k 8843d7f92416211de9ebb963ff4ce281 uixkAR5r+cNiHTHJYWhqxd5L+ZCqsw==
+
+# Result
+Decrypted: STRING_TO_ENCRYPT
+```
